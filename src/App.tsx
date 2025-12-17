@@ -39,16 +39,16 @@ function SectionHeader({
   seeAllLink?: string
 }) {
   return (
-    <div className="flex items-center gap-4 mb-8">
-      <div className="flex items-center gap-3">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">{title}</h2>
+    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-6 sm:mb-8">
+      <div className="flex items-center gap-2 sm:gap-3">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight">{title}</h2>
         {count && (
-          <span style={{ color: colors.textMuted }} className="text-sm">({count})</span>
+          <span style={{ color: colors.textMuted }} className="text-xs sm:text-sm">({count})</span>
         )}
       </div>
-      <div className="flex-1 h-px" style={{ backgroundColor: colors.border }} />
+      <div className="hidden sm:block flex-1 h-px" style={{ backgroundColor: colors.border }} />
       {seeAllLink && (
-        <a href={seeAllLink} className="text-sm hover:text-white/80 transition-colors">
+        <a href={seeAllLink} className="text-xs sm:text-sm hover:text-white/80 transition-colors">
           See all
         </a>
       )}
@@ -60,7 +60,7 @@ function SectionHeader({
 function Badge({ children }: { children: string }) {
   return (
     <span
-      className="px-3 py-1.5 text-xs rounded-full backdrop-blur-md"
+      className="px-2 py-1 sm:px-3 sm:py-1.5 text-xs rounded-full backdrop-blur-md"
       style={{
         backgroundColor: 'rgba(255, 255, 255, 0.1)',
         border: `1px solid ${colors.border}`
@@ -78,7 +78,7 @@ function PrimaryButton({ children, href = '#' }: { children: string; href?: stri
       href={href}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="relative block w-full py-3 px-6 text-center font-medium text-black rounded-3xl overflow-hidden"
+      className="relative block w-full py-2.5 sm:py-3 px-4 sm:px-6 text-center font-medium text-black rounded-3xl overflow-hidden text-sm sm:text-base"
       style={{ backgroundColor: colors.accent }}
     >
       {children}
@@ -110,27 +110,27 @@ function ProjectCard({
       className="block"
     >
       <div
-        className="rounded-2xl overflow-hidden p-px"
+        className="rounded-xl sm:rounded-2xl overflow-hidden p-px"
         style={{ border: `1px solid ${colors.border}` }}
       >
-        <div className="relative aspect-video rounded-2xl overflow-hidden">
+        <div className="relative aspect-video rounded-xl sm:rounded-2xl overflow-hidden">
           <img src={image} alt={title} className="w-full h-full object-cover" />
 
           {/* Logo overlay */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 opacity-90">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/4 sm:w-1/3 opacity-90">
             <img src={logo} alt={`${title} logo`} className="w-full h-auto" />
           </div>
 
           {/* Badge */}
-          <div className="absolute bottom-4 left-4">
+          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
             <Badge>{badges.join(', ')}</Badge>
           </div>
         </div>
       </div>
 
-      <div className="mt-4">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p style={{ color: colors.textMuted }} className="text-sm">{description}</p>
+      <div className="mt-3 sm:mt-4">
+        <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">{title}</h3>
+        <p style={{ color: colors.textMuted }} className="text-xs sm:text-sm">{description}</p>
       </div>
     </motion.a>
   )
@@ -156,7 +156,7 @@ function Projects() {
   ]
 
   return (
-    <section className="py-16">
+    <section className="py-10 sm:py-16">
       <SectionHeader title="Projects" count={7} seeAllLink="#" />
 
       <motion.div
@@ -164,7 +164,7 @@ function Projects() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid md:grid-cols-2 gap-6"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
       >
         {projects.map((project) => (
           <ProjectCard key={project.title} {...project} />
@@ -190,25 +190,26 @@ function ServiceCard({
     <motion.div
       variants={fadeInUp}
       whileHover={{ y: -4 }}
-      className="rounded-2xl p-1"
+      className="rounded-xl sm:rounded-2xl p-0.5 sm:p-1"
       style={{ backgroundColor: colors.surface }}
     >
       <div
-        className="rounded-xl p-6 h-full"
+        className="rounded-lg sm:rounded-xl p-4 sm:p-6 h-full"
         style={{ backgroundColor: colors.background }}
       >
-        <div className="flex items-center justify-between mb-6">
-          <span style={{ color: colors.textMuted }} className="text-sm font-medium">{number}.</span>
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <span style={{ color: colors.textMuted }} className="text-xs sm:text-sm font-medium">{number}.</span>
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center"
             style={{ backgroundColor: colors.surface }}
           >
-            <Icon size={20} style={{ color: colors.accent }} />
+            <Icon size={16} className="sm:hidden" style={{ color: colors.accent }} />
+            <Icon size={20} className="hidden sm:block" style={{ color: colors.accent }} />
           </div>
         </div>
 
-        <h3 className="text-lg font-semibold mb-3">{title}</h3>
-        <p style={{ color: colors.textMuted }} className="text-sm leading-relaxed">{description}</p>
+        <h3 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3">{title}</h3>
+        <p style={{ color: colors.textMuted }} className="text-xs sm:text-sm leading-relaxed">{description}</p>
       </div>
     </motion.div>
   )
@@ -244,7 +245,7 @@ function Solutions() {
   ]
 
   return (
-    <section className="py-16">
+    <section className="py-10 sm:py-16">
       <SectionHeader title="Solutions" count={4} />
 
       <motion.div
@@ -252,7 +253,7 @@ function Solutions() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid md:grid-cols-2 lg:grid-cols-4 gap-4"
+        className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4"
       >
         {services.map((service) => (
           <ServiceCard key={service.number} {...service} />
@@ -284,7 +285,7 @@ function ProductCard({
       className="block"
     >
       <div
-        className="rounded-2xl overflow-hidden"
+        className="rounded-xl sm:rounded-2xl overflow-hidden"
         style={{ border: `1px solid ${colors.border}` }}
       >
         <div className="aspect-[4/3] overflow-hidden">
@@ -292,10 +293,10 @@ function ProductCard({
         </div>
       </div>
 
-      <div className="mt-4 flex items-center justify-between">
+      <div className="mt-3 sm:mt-4 flex items-center justify-between">
         <div>
-          <h3 className="font-semibold">{title}</h3>
-          <p style={{ color: colors.textMuted }} className="text-sm">{subtitle}</p>
+          <h3 className="font-semibold text-sm sm:text-base">{title}</h3>
+          <p style={{ color: colors.textMuted }} className="text-xs sm:text-sm">{subtitle}</p>
         </div>
         <Badge>{price}</Badge>
       </div>
@@ -321,7 +322,7 @@ function DigitalGoods() {
   ]
 
   return (
-    <section className="py-16">
+    <section className="py-10 sm:py-16">
       <SectionHeader title="Digital goods" count={6} seeAllLink="#" />
 
       <motion.div
@@ -329,7 +330,7 @@ function DigitalGoods() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid md:grid-cols-2 gap-6"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
       >
         {products.map((product) => (
           <ProductCard key={product.title} {...product} />
@@ -344,16 +345,16 @@ function LogoTicker() {
   const logos = ['Dribbble', 'Mailchimp', 'Notion', 'Spotify', 'Booking']
 
   return (
-    <section className="py-12 overflow-hidden">
+    <section className="py-8 sm:py-12 overflow-hidden">
       <motion.div
-        className="flex gap-24"
+        className="flex gap-12 sm:gap-24"
         animate={{ x: [0, -500] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
       >
         {[...logos, ...logos].map((logo, i) => (
           <span
             key={i}
-            className="text-2xl font-semibold whitespace-nowrap"
+            className="text-lg sm:text-2xl font-semibold whitespace-nowrap"
             style={{ color: colors.textMuted }}
           >
             {logo}
@@ -381,22 +382,23 @@ function BlogItem({
       href={href}
       variants={fadeInUp}
       whileHover={{ x: 4 }}
-      className="group flex items-center justify-between py-5"
+      className="group flex items-center justify-between py-4 sm:py-5"
       style={{ borderBottom: `1px solid ${colors.border}` }}
     >
-      <div>
-        <h3 className="font-semibold mb-2 group-hover:text-white/80 transition-colors">{title}</h3>
-        <div className="flex items-center gap-3 text-sm" style={{ color: colors.textMuted }}>
+      <div className="flex-1 min-w-0 pr-4">
+        <h3 className="font-semibold mb-1 sm:mb-2 group-hover:text-white/80 transition-colors text-sm sm:text-base truncate sm:whitespace-normal">{title}</h3>
+        <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm" style={{ color: colors.textMuted }}>
           <span>{date}</span>
           <span className="w-1 h-1 rounded-full" style={{ backgroundColor: colors.textMuted }} />
           <span>{readTime}</span>
         </div>
       </div>
       <div
-        className="w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
         style={{ border: `1px solid ${colors.border}` }}
       >
-        <ArrowUpRight size={18} />
+        <ArrowUpRight size={16} className="sm:hidden" />
+        <ArrowUpRight size={18} className="hidden sm:block" />
       </div>
     </motion.a>
   )
@@ -413,7 +415,7 @@ function Blog() {
   ]
 
   return (
-    <section className="py-16">
+    <section className="py-10 sm:py-16">
       <SectionHeader title="From the blog" count={5} seeAllLink="#" />
 
       <motion.div
@@ -447,22 +449,22 @@ function TestimonialCard({
       href="#"
       variants={fadeInUp}
       whileHover={{ y: -4 }}
-      className="block rounded-2xl p-6"
+      className="block rounded-xl sm:rounded-2xl p-4 sm:p-6"
       style={{ backgroundColor: colors.surfaceDark }}
     >
-      <div className="flex items-center gap-3 mb-4">
-        <img src={avatar} alt={name} className="w-10 h-10 rounded-full object-cover" />
+      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+        <img src={avatar} alt={name} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover" />
         <div>
-          <div className="flex items-center gap-2">
-            <span className="font-medium text-sm">{name}</span>
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-blue-400">
+          <div className="flex items-center gap-1 sm:gap-2">
+            <span className="font-medium text-xs sm:text-sm">{name}</span>
+            <svg viewBox="0 0 24 24" className="w-3 h-3 sm:w-4 sm:h-4 fill-blue-400">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
           </div>
-          <span className="text-sm" style={{ color: colors.textMuted }}>{handle}</span>
+          <span className="text-xs sm:text-sm" style={{ color: colors.textMuted }}>{handle}</span>
         </div>
       </div>
-      <p className="text-sm leading-relaxed">{text}</p>
+      <p className="text-xs sm:text-sm leading-relaxed">{text}</p>
     </motion.a>
   )
 }
@@ -509,7 +511,7 @@ function Testimonials() {
   ]
 
   return (
-    <section className="py-16">
+    <section className="py-10 sm:py-16">
       <SectionHeader title="What others say" count={6} />
 
       <motion.div
@@ -517,7 +519,7 @@ function Testimonials() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid md:grid-cols-2 gap-4"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
       >
         {testimonials.map((testimonial) => (
           <TestimonialCard key={testimonial.handle} {...testimonial} />
@@ -544,29 +546,30 @@ function PricingCard({
   return (
     <motion.div
       variants={fadeInUp}
-      className="rounded-2xl p-6"
+      className="rounded-xl sm:rounded-2xl p-4 sm:p-6"
       style={{ backgroundColor: colors.surfaceDark }}
     >
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold mb-2">{title}</h3>
-        <p style={{ color: colors.textMuted }} className="text-sm">{description}</p>
+      <div className="mb-4 sm:mb-6">
+        <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2">{title}</h3>
+        <p style={{ color: colors.textMuted }} className="text-xs sm:text-sm">{description}</p>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <span className="text-xs" style={{ color: colors.textMuted }}>From</span>
         <div className="flex items-baseline gap-1">
-          <span className="text-3xl font-semibold">{price}</span>
-          <span style={{ color: colors.textMuted }}>/{period}</span>
+          <span className="text-2xl sm:text-3xl font-semibold">{price}</span>
+          <span className="text-sm" style={{ color: colors.textMuted }}>/{period}</span>
         </div>
       </div>
 
       <PrimaryButton>Book a call</PrimaryButton>
 
-      <div className="mt-6 space-y-3">
+      <div className="mt-4 sm:mt-6 space-y-2 sm:space-y-3">
         {features.map((feature) => (
-          <div key={feature} className="flex items-center gap-3">
-            <Check size={18} style={{ color: colors.accent }} />
-            <span className="text-sm">{feature}</span>
+          <div key={feature} className="flex items-center gap-2 sm:gap-3">
+            <Check size={16} className="sm:hidden" style={{ color: colors.accent }} />
+            <Check size={18} className="hidden sm:block" style={{ color: colors.accent }} />
+            <span className="text-xs sm:text-sm">{feature}</span>
           </div>
         ))}
       </div>
@@ -594,7 +597,7 @@ function Pricing() {
   ]
 
   return (
-    <section className="py-16">
+    <section className="py-10 sm:py-16">
       <SectionHeader title="Pricing" />
 
       <motion.div
@@ -602,7 +605,7 @@ function Pricing() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid md:grid-cols-2 gap-6"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
       >
         {plans.map((plan) => (
           <PricingCard key={plan.title} {...plan} />
@@ -619,20 +622,20 @@ function FAQItem({ question }: { question: string }) {
   return (
     <motion.div
       variants={fadeInUp}
-      className="rounded-2xl overflow-hidden"
+      className="rounded-xl sm:rounded-2xl overflow-hidden"
       style={{ backgroundColor: colors.surfaceDark }}
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-5 text-left"
+        className="w-full flex items-center justify-between p-4 sm:p-5 text-left"
       >
-        <span className="font-medium pr-4">{question}</span>
+        <span className="font-medium pr-3 sm:pr-4 text-sm sm:text-base">{question}</span>
         <div
-          className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+          className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0"
           style={{ backgroundColor: colors.background }}
         >
           <Plus
-            size={18}
+            size={16}
             className={`transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}
           />
         </div>
@@ -642,9 +645,9 @@ function FAQItem({ question }: { question: string }) {
         <motion.div
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: 'auto', opacity: 1 }}
-          className="px-5 pb-5"
+          className="px-4 pb-4 sm:px-5 sm:pb-5"
         >
-          <p style={{ color: colors.textMuted }} className="text-sm leading-relaxed">
+          <p style={{ color: colors.textMuted }} className="text-xs sm:text-sm leading-relaxed">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </motion.div>
@@ -665,7 +668,7 @@ function FAQ() {
   ]
 
   return (
-    <section className="py-16">
+    <section className="py-10 sm:py-16">
       <SectionHeader title="Most asked questions" count={6} />
 
       <motion.div
@@ -673,7 +676,7 @@ function FAQ() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="space-y-3"
+        className="space-y-2 sm:space-y-3"
       >
         {questions.map((question) => (
           <FAQItem key={question} question={question} />
@@ -686,7 +689,7 @@ function FAQ() {
 // Main App
 function App() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: colors.background }}>
+    <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: colors.background }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <Projects />
         <Solutions />
