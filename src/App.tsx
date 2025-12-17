@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Plus, Check, Leaf, Box, Globe, Camera } from 'lucide-react'
+import { ArrowUpRight, Plus, Check, Leaf, Box, Globe, Camera, Home, ShoppingBag, Briefcase, FileText, Mail } from 'lucide-react'
 import { useState } from 'react'
 
 // Color palette from Framer template
@@ -26,6 +26,73 @@ const staggerContainer = {
     opacity: 1,
     transition: { staggerChildren: 0.1 }
   }
+}
+
+// Floating Navigation Component
+function FloatingNav() {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const navItems = [
+    { icon: Home, label: 'Home', href: '#' },
+    { icon: ShoppingBag, label: 'Shop', href: '#shop' },
+    { icon: Briefcase, label: 'Work', href: '#work' },
+    { icon: FileText, label: 'Blog', href: '#blog' },
+    { icon: Mail, label: 'Contact', href: '#contact' },
+  ]
+
+  return (
+    <motion.nav
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.5, duration: 0.6, ease: 'easeOut' }}
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
+    >
+      <div
+        className="flex items-center gap-1 px-2 py-2 rounded-full"
+        style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.03)',
+          backdropFilter: 'blur(30px)',
+          WebkitBackdropFilter: 'blur(30px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          boxShadow: 'rgba(0, 0, 0, 0.5) 0px 8px 24px 0px, rgba(255, 255, 255, 0.04) 0px -8px 24px 0px',
+        }}
+      >
+        {navItems.map((item, index) => {
+          const Icon = item.icon
+          const isActive = activeIndex === index
+
+          return (
+            <motion.a
+              key={item.label}
+              href={item.href}
+              onClick={() => setActiveIndex(index)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full transition-colors"
+              style={{
+                backgroundColor: isActive ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+              }}
+            >
+              <Icon
+                size={20}
+                className="sm:hidden"
+                style={{
+                  color: isActive ? colors.white : colors.textMuted,
+                }}
+              />
+              <Icon
+                size={22}
+                className="hidden sm:block"
+                style={{
+                  color: isActive ? colors.white : colors.textMuted,
+                }}
+              />
+            </motion.a>
+          )
+        })}
+      </div>
+    </motion.nav>
+  )
 }
 
 // Section Header Component
@@ -690,7 +757,8 @@ function FAQ() {
 function App() {
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: colors.background }}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <FloatingNav />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-24">
         <Projects />
         <Solutions />
         <DigitalGoods />
