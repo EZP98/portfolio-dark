@@ -543,37 +543,37 @@ function Testimonials() {
       name: 'Juno C.',
       handle: '@juno123',
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop',
-      text: 'Alex just gets it. Clean design, smart structure, and an eye for detail that makes everything feel intentional.'
+      text: 'Ezio just gets it. Clean design, smart structure, and an eye for detail that makes everything feel intentional.'
     },
     {
       name: 'Nina S.',
       handle: '@ninas95',
       avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop',
-      text: 'Working with Alex was one of the best creative decisions we made this year. He took our scattered ideas and turned them into a cohesive digital experience.'
+      text: 'Working with Ezio was one of the best creative decisions we made this year. He took our scattered ideas and turned them into a cohesive digital experience.'
     },
     {
       name: 'Jordan P.',
       handle: '@jordanp',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop',
-      text: 'Alex is a designer who actually listens. Every round of feedback felt understood and reflected in the next version.'
+      text: 'Ezio is a designer who actually listens. Every round of feedback felt understood and reflected in the next version.'
     },
     {
       name: 'Lucas M.',
       handle: '@lucasm',
       avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&h=96&fit=crop',
-      text: 'Found Alex through one of his Framer templates and was instantly impressed. The final site feels effortless — light, modern, and exactly on-brand.'
+      text: 'Found Ezio through one of his Framer templates and was instantly impressed. The final site feels effortless — light, modern, and exactly on-brand.'
     },
     {
       name: 'Marc K.',
       handle: '@kuipermarc',
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop',
-      text: 'Our website used to feel clunky and outdated. Alex gave it a total transformation — cleaner layout, faster load time.'
+      text: 'Our website used to feel clunky and outdated. Ezio gave it a total transformation — cleaner layout, faster load time.'
     },
     {
       name: 'Samantha R.',
       handle: '@samanthar',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=96&h=96&fit=crop',
-      text: 'Sharp, reliable, and full of good taste. Alex is the kind of creative you can trust to deliver without micromanaging.'
+      text: 'Sharp, reliable, and full of good taste. Ezio is the kind of creative you can trust to deliver without micromanaging.'
     }
   ]
 
